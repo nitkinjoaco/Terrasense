@@ -1,0 +1,25 @@
+{
+  "name": "terrasense",
+  "version": "1.0.0",
+  "description": "Dispositivo de medicion de parametros del suelo y ambiente para el cuidado de una planta que muestra los datos en una pagina webS",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitkinjoaco/Terrasense.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/nitkinjoaco/Terrasense/issues"
+  },
+  "homepage": "https://github.com/nitkinjoaco/Terrasense#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "typescript": "^7.0.2"
+  }
+}

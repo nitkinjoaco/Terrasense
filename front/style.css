@@ -1,0 +1,115 @@
+.background-cuadrado{
+    background-image: url(images/imagenfondo.png);
+
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%,  -50%);
+width: 100vh;
+height: 100vh;
+z-index: -1;
+background-size: cover;
+}
+
+.cuadrado{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 645px;
+    height: 412px;
+    background-color: white;
+    z-index: -1;
+    }
+
+    .cuadrado1{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,  -50%);
+        width: 206px;
+        height: 412px;
+        background-color: lightgray;
+        z-index: -1;
+        margin-left: -220px;
+        }
+
+
+        .cuadrado2{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,  -50%);
+            width: 141px;
+            height: 167px;
+            background-color: black;
+            z-index: -1;
+            margin-left: -220px;
+            }
+
+            .cuadrado3{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,  -50%);
+                width: 101px;
+                height: 11px;
+                background-color: black;
+                z-index: -1;
+                margin-left: -223px;
+                margin-top: 120px;
+                }
+
+
+                .cuadrado4{
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,  -50%);
+                    width: 124px;
+                    height: 23px;
+                    background-color: black;
+                    z-index: -1;
+                    margin-left: -25px;
+                    margin-top: -165px;
+                    }
+
+                    .cuadrado5{
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,  -50%);
+                        width: 283px;
+                        height: 23px;
+                        background-color: black;
+                        z-index: -1;
+                        margin-left: 53px;
+                        margin-top: 0px;
+                        }
+
+
+                        .cuadrado6{
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%,  -50%);
+                            width: 283px;
+                            height: 23px;
+                            background-color: black;
+                            z-index: -1;
+                            margin-left: 53px;
+                            margin-top: 75px;
+                            }
+
+                            .cuadrado7{
+                                position: fixed;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%,  -50%);
+                                width: 59px;
+                                height: 23px;
+                                background-color: black;
+                                z-index: -1;
+                                margin-left: 260px;
+                                margin-top: 170px;
+                                }
