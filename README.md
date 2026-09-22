@@ -41,7 +41,7 @@ Fase 2 en curso.
 ## Stack
 
 - **Hardware:** Arduino Uno (C/C++ vía Arduino IDE), simulaciones en Tinkercad
-- **Backend:** Node.js 24 + TypeScript 7 (`fs` para persistencia, `serialport` para leer el Arduino)
+- **Backend:** Node.js 22.14+ + TypeScript 7 (`fs` para persistencia, `serialport` para leer el Arduino)
 - **Frontend:** HTML + CSS (sin framework por ahora)
 - **Formato de intercambio:** JSON
 - **Diseño:** Figma (wireframes y UI Kit), Whimsical (mapa de navegación)
@@ -356,7 +356,7 @@ Cuando exista la API, el front pasa a servirse desde el backend (ver [API](#api)
 
 ### Backend
 
-Requiere **Node.js 24 o superior**. La primera vez, `npm install` (instala TypeScript y los tipos de Node, que son las dos únicas dependencias por ahora).
+Requiere **Node.js 22.14 o superior**. La primera vez, `npm install` (instala TypeScript y los tipos de Node, que son las dos únicas dependencias por ahora).
 
 | Comando | Qué hace |
 | :--- | :--- |
@@ -365,7 +365,7 @@ Requiere **Node.js 24 o superior**. La primera vez, `npm install` (instala TypeS
 
 #### Por qué no hace falta compilar
 
-Node 24 ejecuta archivos `.ts` directamente: al leerlos **borra las anotaciones de tipo** y corre el JavaScript que queda. No los compila ni los verifica — un error de tipos no lo detiene.
+Node ejecuta archivos `.ts` directamente (en 22.14 con el flag `--experimental-strip-types`, que ya está en `npm run dev`; desde 22.18 no hace falta): al leerlos **borra las anotaciones de tipo** y corre el JavaScript que queda. No los compila ni los verifica — un error de tipos no lo detiene.
 
 Esa es la división de trabajo del proyecto: **Node ejecuta, TypeScript revisa**. Por eso hay dos comandos y no uno, y por eso `tsconfig.json` tiene `noEmit: true` — no existe un paso de build ni una carpeta `dist/`.
 

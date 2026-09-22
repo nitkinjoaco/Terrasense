@@ -1,4 +1,4 @@
-interface medicion {
+export interface medicion {
     timestamp: string;
     suelo : {
         humedad: number; 
