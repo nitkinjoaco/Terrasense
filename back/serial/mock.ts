@@ -4,6 +4,7 @@
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { medicion } from "../tipos.ts";
+import { parsear } from "../parser.ts";
 
 let ultima: medicion | null = null;
 
@@ -30,7 +31,13 @@ export function crearMedicion() {
         const luz = Math.floor(Math.random() * 100);
         const ph = parseFloat((5 + Math.random() * 3).toFixed(1));
 
-        const m: medicion = { timestamp, suelo, aire, luz, ph };
+        const linea = `${suelo.humedad},${suelo.temperatura},${aire.humedad},${aire.temperatura},${luz},${ph}`;
+
+        const m = parsear(linea);
+        if (m === null) {
+            console.log("línea descartada:", linea);
+            return;
+        }
 
         ultima = m; 
         appendFileSync(archivo, JSON.stringify(m) + "\n", "utf-8");
