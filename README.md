@@ -32,7 +32,7 @@ Fase 2 en curso.
 | Backend — `package.json` y `tsconfig.json` | Completado |
 | Backend — Tipos y modelo de datos | En curso (`back/tipos.ts` son variables sueltas, faltan las `interface`) |
 | Backend — Lectura/escritura de archivos (fs) | Pendiente |
-| Backend — API HTTP para el frontend | Pendiente |
+| Backend — API HTTP para el frontend | En curso (2 de 5 endpoints, ver [API](#api)) |
 | Backend — Comunicación serial (`serialport`) | Pendiente |
 | TIMI — Wireframes, paleta, UI Kit, modelado 3D base | Completado |
 
@@ -289,16 +289,44 @@ Aparte, mantener **la última medición en memoria**, en una variable. El endpoi
 
 ### API
 
-Con dos endpoints alcanza para arrancar:
+Todos los endpoints viven en `back/api/rutas.ts`. El Arduino no usa ninguno: sus datos entran por el serial. Los endpoints son solo para que el frontend pida o mande datos.
 
-| Endpoint | Devuelve |
-| :--- | :--- |
-| `GET /api/actual` | La última medición — lo que el dashboard muestra en grande |
-| `GET /api/historico?desde=...` | Un array de mediciones, para los gráficos |
+#### Mediciones
+
+| Método | Endpoint | Recibe | Devuelve | Estado |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/api/actual` | — | La última medición, lo que el dashboard muestra en grande. Si todavía no hay ninguna, `404` con `{ "error": "todavía no hay mediciones" }` | Hecho |
+| `GET` | `/api/historico` | `?desde=` (opcional, fecha ISO 8601) | Un array de mediciones, para los gráficos. Con `desde`, solo las posteriores a esa fecha | A medias: falta el filtro `desde` |
+
+`desde` se lee con `req.query.desde`. Las fechas ISO 8601 (`2026-09-23T14:07:59Z`) se pueden comparar como texto (`m.timestamp >= desde`), porque el orden alfabético coincide con el cronológico.
+
+#### Frontend
+
+| Método | Ruta | Devuelve | Estado |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/`, `/pagina.html`, `/style.css`, `/images/...` | Los archivos de `front/` | Pendiente |
+
+No es un endpoint de la API sino una línea en `rutas.ts`: `app.use(express.static("front"))`.
 
 **Servir el `front/` desde el mismo servidor Node**, en vez de abrir el HTML con doble clic. Si la página se abre como archivo (`file://`) y hace `fetch` a `localhost:3000`, el navegador lo bloquea por CORS. Sirviendo todo desde el mismo origen, el problema no existe.
 
 Para actualizar la pantalla, un `fetch` cada N segundos (*polling*) alcanza. WebSockets es más elegante, pero es complejidad que este proyecto todavía no necesita.
+
+#### Usuarios — a definir, al final
+
+No bloquean nada (ver [Orden de trabajo sugerido](#orden-de-trabajo-sugerido)). Salen de los formularios de `front/registrar.html` y `front/cambiar.html`. Propuesta, con los nombres de `back/tipos.ts`:
+
+| Método | Endpoint | Recibe | Devuelve | Estado |
+| :--- | :--- | :--- | :--- | :--- |
+| `POST` | `/api/usuarios` | `{ nombre, correo, contrasena }` | `201` si se creó; `400` si falta un campo o el correo ya existe | Pendiente |
+| `POST` | `/api/login` | `{ correo, contrasena }` | `200` si coinciden; `401` si no | Pendiente |
+
+Antes de escribirlos:
+
+- Unificar los nombres de los campos. Este README (`nombre_de_usuario`, `mail`, `contraseña`), `back/tipos.ts` (`nombre`, `correo`, `contrasena`) y el formulario de `registrar.html` (`nombre`, `correo`, `contraseña`) no coinciden.
+- `cambiar.html` tiene solo el campo de correo: para iniciar sesión le falta la contraseña.
+- La contraseña se guarda hasheada, nunca en texto plano.
+- Un login que recuerde quién entró necesita sesiones o tokens. Confirmar con el docente si el proyecto lo necesita, ya que corre en una sola computadora.
 
 ### Orden de trabajo sugerido
 
@@ -447,11 +475,16 @@ Las tres últimas son las que le dan sentido a definir las `interface` de `back/
 
 - [x] Crear `package.json`
 - [x] Configurar TypeScript (`tsconfig.json` + `npm run check`)
-- [ ] Definir las `interface` en `back/tipos.ts`
-- [ ] Escribir el mock de datos para desarrollar sin hardware
-- [ ] Parser, storage (JSON Lines) y API HTTP
+- [x] Definir las `interface` en `back/tipos.ts`
+- [x] Escribir el mock de datos para desarrollar sin hardware
+- [x] Parser (`back/parser.ts`)
+- [ ] Pasar el storage a `back/storage.ts` (hoy vive en `back/serial/mock.ts`)
+- [x] `GET /api/actual`
+- [x] `GET /api/historico`
+- [ ] Filtro `?desde=` en `GET /api/historico`
+- [ ] Servir el `front/` desde el backend (`express.static`)
 - [ ] Implementar la comunicación serial con `serialport`
-- [ ] Servir el `front/` desde el backend
+- [ ] `POST /api/usuarios` y `POST /api/login` (al final)
 
 ### Hardware
 
