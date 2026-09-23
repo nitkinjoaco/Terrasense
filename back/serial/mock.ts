@@ -32,7 +32,7 @@ export function crearMedicion() {
 
         const m: medicion = { timestamp, suelo, aire, luz, ph };
 
-        ultima = m; // Actualizamos la variable ultima
+        ultima = m; 
         appendFileSync(archivo, JSON.stringify(m) + "\n", "utf-8");
     }, 5000);
 }
