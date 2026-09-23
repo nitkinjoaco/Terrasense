@@ -1,2 +1,4 @@
 import express from "express"
-import { crearMedicion } from "./serial/mock.js";
+import { crearservidor } from "./api/rutas.ts";
+
+crearservidor()

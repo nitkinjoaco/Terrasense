@@ -1,9 +1,11 @@
 // en esta archivo vamos a escribir datos falsos en un archivo llamado "datos/mediciones.jsonl"
 // (un objeto JSON por línea) en un intervalo en 5 segundos
 
-import { appendFileSync, existsSync, mkdirSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { medicion } from "../tipos.ts";
+
+let ultima: medicion | null = null;
 
 export function crearMedicion() {
     const carpeta = "./datos";
@@ -12,7 +14,6 @@ export function crearMedicion() {
     if (!existsSync(carpeta)) {
         mkdirSync(carpeta, { recursive: true });
     }
-
 
     setInterval(() => {
         const timestamp = new Date().toISOString();
@@ -31,7 +32,30 @@ export function crearMedicion() {
 
         const m: medicion = { timestamp, suelo, aire, luz, ph };
 
+        ultima = m; // Actualizamos la variable ultima
         appendFileSync(archivo, JSON.stringify(m) + "\n", "utf-8");
     }, 5000);
 }
-crearMedicion();
+
+export function obtenerUltima(): medicion | null {
+    return ultima;
+}
+
+export function obtenerHistorico(): medicion[] {
+    const archivo = join("./datos", "mediciones.jsonl");
+    const historico: medicion[] = [];
+
+    if (existsSync(archivo)) {
+        const texto = readFileSync(archivo, "utf-8");
+        const lineas = texto.trim().split("\n");
+
+        for (let i = 0; i < lineas.length; i++) {
+            const linea = lineas[i];
+            if (linea && linea.length > 0) {
+                historico.push(JSON.parse(linea) as medicion);
+            }
+        }
+    } 
+
+    return historico;
+}
