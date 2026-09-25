@@ -356,7 +356,7 @@ Cuando exista la API, el front pasa a servirse desde el backend (ver [API](#api)
 
 ### Backend
 
-Requiere **Node.js 24 o superior**. La primera vez, `npm install` (instala TypeScript y los tipos de Node, que son las dos únicas dependencias por ahora).
+Requiere **Node.js 22.18 o superior** (primera versión de Node 22 que ejecuta `.ts` sin flags). La primera vez, `npm install` (instala TypeScript y los tipos de Node, que son las dos únicas dependencias por ahora).
 
 | Comando | Qué hace |
 | :--- | :--- |
@@ -365,7 +365,7 @@ Requiere **Node.js 24 o superior**. La primera vez, `npm install` (instala TypeS
 
 #### Por qué no hace falta compilar
 
-Node 24 ejecuta archivos `.ts` directamente: al leerlos **borra las anotaciones de tipo** y corre el JavaScript que queda. No los compila ni los verifica — un error de tipos no lo detiene.
+Node (desde 22.18) ejecuta archivos `.ts` directamente: al leerlos **borra las anotaciones de tipo** y corre el JavaScript que queda. No los compila ni los verifica — un error de tipos no lo detiene.
 
 Esa es la división de trabajo del proyecto: **Node ejecuta, TypeScript revisa**. Por eso hay dos comandos y no uno, y por eso `tsconfig.json` tiene `noEmit: true` — no existe un paso de build ni una carpeta `dist/`.
 

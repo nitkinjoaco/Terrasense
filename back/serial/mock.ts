@@ -28,9 +28,10 @@ export function crearMedicion() {
         const luz = Math.floor(Math.random() * 100);
         const ph = parseFloat((5 + Math.random() * 3).toFixed(1)); 
         
-        const linea = `Timestamp: ${timestamp}, Suelo: ${JSON.stringify(suelo)}, Aire: ${JSON.stringify(aire)}, Luz: ${luz}, Ph: ${ph} \n `;
+        const linea = `Timestamp: ${timestamp}, Suelo: ${JSON.stringify(suelo)}, Aire: ${JSON.stringify(aire)}, Luz: ${luz}, Ph: ${ph} ` + "\n";
+
+        appendFileSync(archivo, linea, "utf-8");
         
-        appendFileSync(archivo,linea, "utf-8");
     }, 5000);
 }
 crearMedicion();

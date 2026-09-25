@@ -2,21 +2,18 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./back",
-    "outDir": "./dist",
+    // Node ejecuta los .ts directamente: tsc solo revisa tipos
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
-    // Node 22+ soporta ES2024 completo
+    "moduleResolution": "nodenext",
+    // Node 22.18+ soporta ES2024 completo
     "target": "es2024",
     "lib": ["es2024"],
     "types": ["node"],
-
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -34,6 +31,7 @@
     "strict": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
