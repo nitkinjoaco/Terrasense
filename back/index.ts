@@ -1,5 +1,5 @@
-import  Express  from "express";
-import { crearMedicion } from "./serial/mock.ts";
 import { crearservidor } from "./api/rutas.ts";
+import { crearMedicion } from "./serial/mock.ts";
 
-crearservidor();
+crearMedicion()
+crearservidor()
