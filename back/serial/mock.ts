@@ -3,6 +3,7 @@
 
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import type { medicion } from "../tipos.ts";
 
 export function crearMedicion() {
     const carpeta = "./datos";
@@ -27,7 +28,8 @@ export function crearMedicion() {
         const luz = Math.floor(Math.random() * 100);
         const ph = parseFloat((5 + Math.random() * 3).toFixed(1)); 
         
-        const linea = `Timestamp: ${timestamp}, Suelo: ${JSON.stringify(suelo)}, Aire: ${JSON.stringify(aire)}, Luz: ${luz}, Ph: ${ph} ` + "\n";
+        const medicion: medicion = { timestamp, suelo, aire, luz, ph };
+        const linea = JSON.stringify(medicion) + "\n";
 
         appendFileSync(archivo, linea, "utf-8");
         
