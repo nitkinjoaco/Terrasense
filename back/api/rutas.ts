@@ -1,9 +1,10 @@
 import express from "express"
-import { obtenerUltima, obtenerHistorico } from "../serial/mock.ts";
+import { obtenerHistorico, obtenerUltima } from "../storage.ts";
+import path from "node:path";
 
 export function crearservidor (port = 3000) {
     const app = express();
-    
+    app.use(express.static(path.join(import.meta.dirname, "..", ".." , "front")));
 
     app.get('/api/actual', (req,res) => {
         const ultima = obtenerUltima();
