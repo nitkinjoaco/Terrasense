@@ -2,11 +2,14 @@ import type { medicion } from "./tipos.ts";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-let ultima: medicion | null = null;
-
-
 export function obtenerUltima(): medicion | null {
-    return ultima;
+    const historico = obtenerHistorico();
+
+    if (historico.length === 0) {
+        return null;
+    }
+
+    return historico[historico.length - 1] ?? null;
 }
 
 export function obtenerHistorico(): medicion[] {
