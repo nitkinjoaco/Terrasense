@@ -32,7 +32,7 @@ Fase 2 en curso.
 | Backend — `package.json` y `tsconfig.json` | Completado |
 | Backend — Tipos y modelo de datos | En curso (`back/tipos.ts` son variables sueltas, faltan las `interface`) |
 | Backend — Lectura/escritura de archivos (fs) | Pendiente |
-| Backend — API HTTP para el frontend | En curso (2 de 5 endpoints, ver [API](#api)) |
+| Backend — API HTTP para el frontend | En curso (4 de 5 endpoints, ver [API](#api)) |
 | Backend — Comunicación serial (`serialport`) | Pendiente |
 | TIMI — Wireframes, paleta, UI Kit, modelado 3D base | Completado |
 
@@ -96,6 +96,7 @@ proyecto2026/
 │   │   └── mock.ts         # emite líneas falsas, para trabajar sin hardware
 │   ├── parser.ts           # string → Medicion | error
 │   ├── storage.ts          # fs: guardar y leer mediciones
+│   ├── usuarios.ts         # fs + hash: registrar usuarios y verificar el login
 │   └── api/
 │       └── rutas.ts        # endpoints HTTP
 ├── datos/                  # archivos que genera el backend (no versionar)
@@ -312,21 +313,28 @@ No es un endpoint de la API sino una línea en `rutas.ts`: `app.use(express.stat
 
 Para actualizar la pantalla, un `fetch` cada N segundos (*polling*) alcanza. WebSockets es más elegante, pero es complejidad que este proyecto todavía no necesita.
 
-#### Usuarios — a definir, al final
+#### Usuarios
 
-No bloquean nada (ver [Orden de trabajo sugerido](#orden-de-trabajo-sugerido)). Salen de los formularios de `front/registrar.html` y `front/cambiar.html`. Propuesta, con los nombres de `back/tipos.ts`:
+Salen de los formularios de `front/registrar.html` (registro) y `front/wireframe.html` (iniciar sesión). Usan los nombres de `back/tipos.ts`, y la lógica de guardar y verificar vive en `back/usuarios.ts`:
 
 | Método | Endpoint | Recibe | Devuelve | Estado |
 | :--- | :--- | :--- | :--- | :--- |
-| `POST` | `/api/usuarios` | `{ nombre, correo, contrasena }` | `201` si se creó; `400` si falta un campo o el correo ya existe | Pendiente |
-| `POST` | `/api/login` | `{ correo, contrasena }` | `200` si coinciden; `401` si no | Pendiente |
+| `POST` | `/api/usuarios` | `{ nombre, correo, contrasena }` | `201` con `{ nombre, correo }` si se creó; `400` con `{ error }` si falta un campo o el correo ya existe | Hecho |
+| `POST` | `/api/login` | `{ correo, contrasena }` | `200` con `{ nombre, correo }` si coinciden; `401` con `{ error }` si no; `400` si falta un campo | Hecho |
 
-Antes de escribirlos:
+Cómo funcionan:
 
-- Unificar los nombres de los campos. Este README (`nombre_de_usuario`, `mail`, `contraseña`), `back/tipos.ts` (`nombre`, `correo`, `contrasena`) y el formulario de `registrar.html` (`nombre`, `correo`, `contraseña`) no coinciden.
-- `cambiar.html` tiene solo el campo de correo: para iniciar sesión le falta la contraseña.
-- La contraseña se guarda hasheada, nunca en texto plano.
-- Un login que recuerde quién entró necesita sesiones o tokens. Confirmar con el docente si el proyecto lo necesita, ya que corre en una sola computadora.
+- **El cuerpo va en JSON** con esas claves exactas, sin ñ (`contrasena`). El `name="contraseña"` de los `<input>` no importa: el JavaScript del front arma el JSON y manda `fetch("/api/usuarios", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ nombre, correo, contrasena }) })`.
+- **"Confirmar contraseña" se chequea en el front**, antes del `fetch`. Al backend le llega una sola contraseña.
+- **El correo se guarda en minúsculas y sin espacios en los bordes**, así `Joaco@Gmail.com` y `joaco@gmail.com` son la misma cuenta.
+- **La contraseña nunca se guarda.** Se guarda un hash hecho con `scrypt` (viene con Node, en `node:crypto`) más una *sal* aleatoria por usuario. Para el login se vuelve a hashear lo que llegó con la misma sal y se comparan los hashes.
+- **El login da el mismo `401` si el correo no existe o si la contraseña está mal**, para no revelar qué correos están registrados.
+- Los usuarios se guardan en `datos/usuarios.json`, un array JSON (no JSON Lines como las mediciones): son pocos, y cambiar una contraseña implica modificar un registro, no agregar uno.
+
+Lo que falta:
+
+- **No hay sesiones.** El login responde si el correo y la contraseña coinciden, pero el servidor no recuerda quién entró. Para eso hacen falta sesiones o tokens: confirmar con el docente si el proyecto lo necesita, ya que corre en una sola computadora.
+- **Cambiar la contraseña** (`cambiar.html`, `mail.html`) no tiene endpoint: sin sesiones el servidor no sabe de quién es la contraseña nueva, y mandar el link por mail requiere un servicio de correo.
 
 ### Orden de trabajo sugerido
 
@@ -358,9 +366,14 @@ Pensado para **no depender del hardware para avanzar**: el backend puede estar t
 
 | Campo | Tipo | Descripción |
 | :--- | :--- | :--- |
-| `nombre_de_usuario` | string | Identificador del usuario |
-| `mail` | string | Correo electrónico |
-| `contraseña` | string | Debe guardarse hasheada, nunca en texto plano |
+Lo que se guarda en `datos/usuarios.json` (`usuarioGuardado` en `back/tipos.ts`). Lo que llega por la API (`usuario`) trae `contrasena` en lugar de `sal` y `hash`.
+
+| Campo | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `nombre` | string | Nombre del usuario |
+| `correo` | string | Correo electrónico, en minúsculas. Identifica al usuario: no puede repetirse |
+| `sal` | string | Valor aleatorio (hex) que se mezcla con la contraseña antes de hashearla |
+| `hash` | string | Hash `scrypt` (hex) de la contraseña. La contraseña en sí nunca se guarda |
 
 ---
 
@@ -484,7 +497,8 @@ Las tres últimas son las que le dan sentido a definir las `interface` de `back/
 - [ ] Filtro `?desde=` en `GET /api/historico`
 - [ ] Servir el `front/` desde el backend (`express.static`)
 - [ ] Implementar la comunicación serial con `serialport`
-- [ ] `POST /api/usuarios` y `POST /api/login` (al final)
+- [x] `POST /api/usuarios` y `POST /api/login`
+- [ ] Sesiones (recordar quién inició sesión) y cambio de contraseña, si el docente lo pide
 
 ### Hardware
 

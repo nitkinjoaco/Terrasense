@@ -18,3 +18,11 @@ export interface usuario {
     correo: string;
     contrasena: string;
 }
+
+// así queda un usuario en datos/usuarios.json: sin la contraseña, solo su hash
+export interface usuarioGuardado {
+    nombre: string;
+    correo: string;
+    sal: string;
+    hash: string;
+}
