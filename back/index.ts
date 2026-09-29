@@ -3,7 +3,7 @@ import { parsear } from "./parser.ts";
 import { guardar, obtenerUltima } from "./storage.ts";
 import { crearservidor } from "./api/rutas.ts";
 
-const puerto = process.env.PUERTO ?? "COM3";
+const puerto = process.env.PUERTO ?? "COM9";
 
 function alRecibir(linea: string) {
     const medicion = parsear(linea);
