@@ -1,4 +1,4 @@
-import type { medicion } from "./tipos.ts";
+import type { medicion, usuario } from "./tipos.ts";
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -42,4 +42,11 @@ export function obtenerHistorico(): medicion[] {
     }
 
     return historico;
+}
+
+export function usuarioInfo(pasword: contraseña,mail: correo) {
+   if (!existsSync(join(carpeta , "usuario.json"))){
+    mkdirSync(join(carpeta , "usuario.json"), { recursive: true })
+   };
+
 }
