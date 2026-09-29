@@ -14,8 +14,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,  -50%);
-    width: 780px;
-    height: 390px;
+    width: 800px;
+    height: 400px;
     background-color: #fdedd4;
     opacity: 0.9;
     margin-left: -40px;
@@ -27,11 +27,14 @@
     
     
     
-   .imagenfondo{
-height: 100vw;
-width: 100vw;
-
-   }
+    #imagen121{
+    width: 180px;
+    height: 190px;
+    margin-left: -13px;
+    margin-top: -13px;
+    
+    
+    }
     
     
     
@@ -77,14 +80,14 @@ margin-left: -150px;
     width: 283px;
     height: 23px;
     background-color: black;
-    margin-left: 50px;
-    margin-top: -80px ;
+    margin-left: 82px;
+    margin-top: -50px ;
     background: none;
     border: none;
     box-shadow: none;
     }
     
-    .paracontra{
+    .paracorreo{
       background-color: transparent; 
       border: none;                  
       border-bottom: 2px solid lightgray; 
@@ -107,7 +110,7 @@ font-family: "Inter", sans-serif;
 
     }
     
-    .contra{
+    .correo{
       
         font-family: "Inter", sans-serif;
         font-optical-sizing: auto;
@@ -118,7 +121,7 @@ font-family: "Inter", sans-serif;
       border: none;
       box-shadow: none;
       margin-top: 33px;
-      font-size: 16px;
+      font-size: 13px;
       margin-left: -180px;
       color: gray;
     }
@@ -133,11 +136,11 @@ font-family: "Inter", sans-serif;
     top: 50%;
     left: 50%;
     transform: translate(-50%,  -50%);
-    width: 100px;
-    height: 60px;
+    width: 59px;
+    height: 23px;
     background-color: black;
     margin-left: 235px;
-    margin-top: 135px ;
+    margin-top: 150px ;
     }
     
     
@@ -153,10 +156,8 @@ font-family: "Inter", sans-serif;
     box-shadow: none;
     border-radius: 3px;
     white-space: nowrap;
-    margin-left: -295px;
-    margin-top: -10px;
+    margin-left: -240px;
     box-shadow: 0 0 0 15px green;
-    width: 130px;
     }
     
     button:hover{
@@ -168,8 +169,34 @@ font-family: "Inter", sans-serif;
     
     
     }
-    
 
-     
+     .cuadrado9{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 85px;
+    height: 23px;
+    background-color: black;
+    margin-left: 85px;
+    margin-top: 10px ;
+    background: none;
+    box-shadow: none;
+    border: none;
+    }
     
-   
+    .correo1{
+font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+        background-color: lightgray;
+      background: none;
+      border: none;
+      box-shadow: none;
+      margin-top: -100px;
+      font-size: 16px;
+      margin-left: -300px;
+      color: gray;
+
+    }
