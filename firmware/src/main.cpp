@@ -15,7 +15,7 @@ unsigned long wait = 10000; // tiempo asignado a la espera global entre cada med
 DHT dht(sens_aire , DHT11);
 
 
-float leersensor (int pin , int escala){  // funcion que sirve para leer los sensores que no tienen librerias 
+float leersensor (float pin , int escala){  // funcion que sirve para leer los sensores que no tienen librerias 
     int valor = analogRead(pin);
     return (valor / 1023.0) * escala;
 };
