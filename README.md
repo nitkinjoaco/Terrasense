@@ -364,7 +364,7 @@ Pensado para **no depender del hardware para avanzar**: el backend puede estar t
 
 ---
 
-## Flujo de la información
+## Flujo de la awdawdaw
 
 ```text
 Sensores → Arduino → (serial, JSON) → Backend → Frontend → Usuario
