@@ -1,19 +1,32 @@
 import type { medicion } from "./tipos.ts";
-import { existsSync, readFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-export function obtenerUltima(): medicion | null {
-    const historico = obtenerHistorico();
+const carpeta = "./datos";
+const archivo = join(carpeta, "mediciones.jsonl");
 
-    if (historico.length === 0) {
-        return null;
+let ultima: medicion | null = null;
+
+export function guardar(medicion: medicion) {
+    if (!existsSync(carpeta)) {
+        mkdirSync(carpeta, { recursive: true });
     }
 
-    return historico[historico.length - 1] ?? null;
+    const linea = JSON.stringify(medicion) + "\n";
+    appendFileSync(archivo, linea, "utf-8");
+
+    ultima = medicion;
+}
+
+export function obtenerUltima(): medicion | null {
+    if (ultima === null) {
+        const historico = obtenerHistorico();
+        ultima = historico[historico.length - 1] ?? null;
+    }
+    return ultima;
 }
 
 export function obtenerHistorico(): medicion[] {
-    const archivo = join("./datos", "mediciones.jsonl");
     const historico: medicion[] = [];
 
     if (existsSync(archivo)) {
@@ -26,7 +39,7 @@ export function obtenerHistorico(): medicion[] {
                 historico.push(JSON.parse(linea) as medicion);
             }
         }
-    } 
+    }
 
     return historico;
 }

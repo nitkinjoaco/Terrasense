@@ -1,15 +1,15 @@
 export interface medicion {
     timestamp: string;
     suelo : {
-        humedad: number; 
-        temperatura : number;
+        humedad: number | null; 
+        temperatura : number | null;
     }
     aire : {
-        humedad: number; 
-        temperatura : number;
+        humedad: number | null; 
+        temperatura : number | null;
     }
-    luz: number;
-    ph: number;
+    luz: number | null;
+    ph: number | null;
 }
 
 
