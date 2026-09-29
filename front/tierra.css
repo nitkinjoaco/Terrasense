@@ -1,0 +1,330 @@
+.background-cuadrado{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 100vw;
+    height: 100vw;
+    background-color: gray;
+    min-height: 100vh;
+    }
+    
+    .cuadrado1{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 100vw;
+    height: 12vh;
+    background-color: lightgray;
+    opacity: 1;
+    border: 1px solid lightgray;
+    margin-top: -18rem;
+    }
+    
+    
+   .imagenfondo2{
+height: 100vw;
+width: 100vw;
+
+
+
+   }
+    .cuadrado2{
+position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 1200px;
+    height: 200px;
+    background-color: lightgray;
+    opacity: 1;
+    border: 1px solid lightgray;
+background: none;
+      border: none;
+      box-shadow: none;
+      margin-left: -770px;
+      margin-top: -200px;
+
+    }
+    
+    
+ 
+    
+    
+    
+    
+.conectar{
+    font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+        background-color: lightgray;
+   font-weight: bold;
+      font-size: 40px;
+      color: black;
+     background: none;
+      border: none;
+      box-shadow: none;
+      margin-top: -100px;
+      text-align: center;
+}    
+   
+
+    .cuadrado3{
+position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    opacity: 1;
+background: none;
+box-shadow: none;
+border: none;
+margin-left: -41rem;
+margin-top: -38.5vh;
+    }
+
+    .imagenlogo{
+margin-top: -200px;
+
+width: 50px;
+height: 50px;
+    }
+   
+    
+.terrasense{
+font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+        background-color: lightgray;
+      font-size: 15px;
+      color: black;
+     background: none;
+      border: none;
+      box-shadow: none;
+      white-space: nowrap;
+      margin-left: 45px;
+      margin-top: -38px;
+      
+
+
+}
+    
+    
+.cuadrado7{
+  position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,  -50%);
+      width: 10rem;
+      height: 7.81vh;
+      background-color: black;
+      background: none;
+      box-shadow: none;
+      border: none;
+  margin-left: -31rem;
+  margin-top: -42vh; 
+  
+  
+  
+  
+      }
+  
+  
+      .boton{
+  color: black;
+     background: none;
+      border: none;
+      box-shadow: none;
+      white-space: nowrap;
+      width: 12rem;
+      height: 3.90625vh;
+      font-size: 17px;
+      font-family: "Inter", sans-serif;
+          font-optical-sizing: auto;
+          font-weight:a weight;
+          font-style: normal;
+  font-weight: bold;
+  
+  
+      }
+  
+  
+    .boton:hover{
+  text-decoration: underline;
+  text-decoration-color: #55a936;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 3px;
+      }
+     
+  
+  
+      .cuadrado8{
+  position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,  -50%);
+      width: 10rem;
+      height: 7.81vh;
+      background-color: black;
+    
+      background: none;
+      box-shadow: none;
+      border: none;
+      margin-left: -20.5rem;
+      margin-top: -42vh;
+      }
+  
+  
+  
+  
+      .boton1{
+  color: black;
+     background: none;
+      border: none;
+      box-shadow: none;
+      white-space: nowrap;
+      width: 12rem;
+      height: 3.90625vh;
+      font-size: 17px;
+      font-family: "Inter", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: weight;
+          font-style: normal;
+  font-weight: bold;
+  width: fit-content;
+  
+  
+      }
+  
+      .boton1:hover{
+        text-decoration: underline;
+        text-decoration-color: #55a936;
+        text-underline-offset: 5px;
+        text-decoration-thickness: 3px;
+            }
+  
+  
+     
+  
+  
+  
+  
+      .cuadrado9{
+  position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,  -50%);
+      width: 10rem;
+      height: 60px;
+      background-color: black;
+   
+      background: none;
+      box-shadow: none;
+      border: none;
+      margin-left: -14rem;
+      margin-top: -41vh;
+      }
+  
+  
+      .boton2{
+  color: black;
+     background: none;
+      border: none;
+      box-shadow: none;
+      white-space: nowrap;
+      width: 12rem;
+      height: 3.90625vh;
+      font-size: 17px;
+      font-family: "Inter", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: weight;
+          font-style: normal;
+  font-weight: bold;
+  border-bottom: 3px solid  #55a936;
+  width: fit-content;
+  
+      }
+  
+  
+      .cuadrado12{
+        position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,  -50%);
+            width: 10rem;
+            height: 7.8125vh;
+            background-color: black;
+          margin-top: -43vh;
+          margin-left: 42rem;
+            background: none;
+            box-shadow: none;
+            border: none;
+        }
+        
+        
+        .boton5{
+             background: none;
+          border: none;
+          padding: 8px;
+          margin: 0;
+          cursor: default;
+          outline: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 8px;
+          background: none;
+          box-shadow: none;
+          border: none;
+        }
+        
+        
+        .iconousuario {
+          width: 3.5rem;
+          height: 4.56vh;
+          color: #374151;
+          stroke-width: 1.5px;
+        }
+        
+        
+        .boton5:active{
+        transform: scale(0.95);
+        }
+  
+   
+        .cuadrado13{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,  -50%);
+            width: 10rem;
+            height: 7.8125vh;
+            background-color: black;
+            background: none;
+            box-shadow: none;
+            border: none;
+            margin-left: -34rem;
+            margin-top: -17vh;
+        }
+
+        .tierra{
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: weight;
+            font-style: normal;
+            background-color: lightgray;
+       font-weight: bold;
+          font-size: 50px;
+          color: white;
+         background: none;
+          border: none;
+          box-shadow: none;
+          margin-top: -100px;
+          text-align: center;
+        white-space: nowrap;
+        }
