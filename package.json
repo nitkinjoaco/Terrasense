@@ -5,7 +5,9 @@
   "main": "back/index.ts",
   "scripts": {
     "dev": "node --experimental-strip-types --disable-warning=ExperimentalWarning back/index.ts",
-    "mock": "node --experimental-strip-types --disable-warning=ExperimentalWarning back/serial/mock.ts",
+    "firmware": "pio run -d firmware -t upload",
+    "todo": "npm run firmware && npm run dev",
+    "mock":"node --experimental-strip-types --disable-warning=ExperimentalWarning back/serial/mock.ts",
     "check": "tsc"
   },
   "repository": {
