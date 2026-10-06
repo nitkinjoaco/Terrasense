@@ -4,7 +4,10 @@
   "description": "Dispositivo de medicion de parametros del suelo y ambiente para el cuidado de una planta que muestra los datos en una pagina webS",
   "main": "back/index.ts",
   "scripts": {
-    "dev": "node back/index.ts",
+    "dev": "node --experimental-strip-types --disable-warning=ExperimentalWarning back/index.ts",
+    "firmware": "pio run -d firmware -t upload",
+    "todo": "npm run firmware && npm run dev",
+    "mock":"node --experimental-strip-types --disable-warning=ExperimentalWarning back/serial/mock.ts",
     "check": "tsc"
   },
   "repository": {
@@ -16,18 +19,20 @@
   "license": "ISC",
   "type": "module",
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22.14.0"
   },
   "bugs": {
     "url": "https://github.com/nitkinjoaco/Terrasense/issues"
   },
   "homepage": "https://github.com/nitkinjoaco/Terrasense#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "serialport": "^13.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^22.20.3",
+    "@types/serialport": "^8.0.5",
     "typescript": "^7.0.2"
   }
 }

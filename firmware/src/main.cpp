@@ -3,7 +3,7 @@
 #include <DallasTemperature.h>
 #include <DHT.h>
 
-#define sens_aire_suelo      A0  // FC-28 AO
+#define sens_Hum_suelo      A0  // FC-28 AO
 #define sens_luz             A1  // LDR
 #define sens_ph              A2  // PH-4502C Po
 #define sens_temp_suelo      2   // DS18B20
@@ -29,17 +29,17 @@ float leerTempAire(){
     return dht.readTemperature();
 };
 
-float LeerHumSuelo(){
-    digitalWrite(alim_suelo , HIGH);
-    delay(20);
-    float i = leersensor(sens_temp_suelo , 1);
-    float humedad = 100.0 -(i*100);
-    digitalWrite(alim_suelo, LOW);
-    return humedad;
-};
+float leerHumSuelo()
+{
+  digitalWrite(alim_suelo, HIGH);
+  delay(10);
+  float suelo = 100.0 - leersensor(sens_Hum_suelo, 100);
+  digitalWrite(alim_suelo, LOW);
+  return suelo;
+}
 
 void enviar (float sensor , bool ultimo) { //neviar las mediciones en el orden que tiene que ser. el bool indica cual es el ultimo sensor en el orden
-    Serial.print(sensor);
+    Serial.print(sensor, 1);
     if (ultimo == true){
         Serial.println();
     } else {Serial.print(",");}
@@ -47,6 +47,8 @@ void enviar (float sensor , bool ultimo) { //neviar las mediciones en el orden q
 
 void setup () {
     Serial.begin(9600);
+    pinMode(alim_suelo, OUTPUT);
+    digitalWrite(alim_suelo, LOW);
     dht.begin();
 
     pinMode(alim_suelo , 7);
@@ -55,14 +57,12 @@ void setup () {
 void loop(){ 
     float HumAire = leerHumAire();
     float TempAire = leerTempAire();
-    float HumsSuelo = LeerHumSuelo();
-    float Luz =  leersensor(sens_luz , 100);
-    float ph = leersensor(sens_ph, 5);
-        
-    enviar(HumsSuelo,false);
+    float HumSuelo = leerHumSuelo();
+    
+    enviar(HumSuelo , false);
     enviar(0,false);
     enviar(HumAire , false);
-    enviar(TempAire , false);
+    enviar(T0 , false);
     enviar(0,false);
     enviar(0,true);
 

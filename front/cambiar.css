@@ -6,6 +6,7 @@
     width: 100vw;
     height: 100vw;
     background-color: gray;
+    min-height: 100vh;
     }
     
     .cuadrado1{
@@ -13,11 +14,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,  -50%);
-    width: 600px;
-    height: 376px;
-    background-color: darkgray;
-    opacity: 0.96;
+    width: 780px;
+    height: 390px;
+    background-color: #fdedd4;
+    opacity: 0.9;
     margin-left: -40px;
+    border: 1px solid #fdedd4;
     }
     
     
@@ -25,14 +27,11 @@
     
     
     
-    #imagen121{
-    width: 180px;
-    height: 190px;
-    margin-left: -13px;
-    margin-top: -13px;
-    
-    
-    }
+   .imagenfondo{
+height: 100vw;
+width: 100vw;
+
+   }
     
     
     
@@ -45,7 +44,7 @@
     width: 124px;
     height: 23px;
     background-color: black;
-    margin-left: 95px;
+    margin-left: 75px;
     margin-top: -160px ;
     background: none;       
       border: none;          
@@ -78,14 +77,14 @@ margin-left: -150px;
     width: 283px;
     height: 23px;
     background-color: black;
-    margin-left: 82px;
-    margin-top: -50px ;
+    margin-left: 50px;
+    margin-top: -80px ;
     background: none;
     border: none;
     box-shadow: none;
     }
     
-    .paracorreo{
+    .paracontra{
       background-color: transparent; 
       border: none;                  
       border-bottom: 2px solid lightgray; 
@@ -98,8 +97,17 @@ margin-left: -150px;
     
     }
     
+    input{
+  color: gray;
+font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+
+
+    }
     
-    .correo{
+    .contra{
       
         font-family: "Inter", sans-serif;
         font-optical-sizing: auto;
@@ -125,11 +133,11 @@ margin-left: -150px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,  -50%);
-    width: 59px;
-    height: 23px;
+    width: 100px;
+    height: 60px;
     background-color: black;
     margin-left: 235px;
-    margin-top: 150px ;
+    margin-top: 135px ;
     }
     
     
@@ -145,8 +153,10 @@ margin-left: -150px;
     box-shadow: none;
     border-radius: 3px;
     white-space: nowrap;
-    margin-left: -140px;
-    box-shadow: 0 0 0 10px green;
+    margin-left: -295px;
+    margin-top: -10px;
+    box-shadow: 0 0 0 15px green;
+    width: 130px;
     }
     
     button:hover{
@@ -159,3 +169,7 @@ margin-left: -150px;
     
     }
     
+
+     
+    
+   
