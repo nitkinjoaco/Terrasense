@@ -7,7 +7,7 @@
 #define sens_luz             A1  // LDR
 #define sens_ph              A2  // PH-4502C Po
 #define sens_temp_suelo      2   // DS18B20
-#define sens_aire            3   // DHT11 DATA
+#define sens_aire            3   // DHT11 
 #define alim_suelo           7   // FC-28 VCC
 
 unsigned long wait = 10000; // tiempo asignado a la espera global entre cada medicion 
@@ -15,7 +15,7 @@ unsigned long wait = 10000; // tiempo asignado a la espera global entre cada med
 DHT dht(sens_aire , DHT11);
 
 
-float leersensor (int pin , int escala){  // funcion que sirve para leer los sensores que no tienen librerias 
+float leersensor (int pin , int escala){  // funcion que sirve para leer los sensores que no tienen librerias y analogicos 
     int valor = analogRead(pin);
     return (valor / 1023.0) * escala;
 };
@@ -50,6 +50,8 @@ void setup () {
     pinMode(alim_suelo, OUTPUT);
     digitalWrite(alim_suelo, LOW);
     dht.begin();
+
+    pinMode(alim_suelo , 7);
 };
 
 void loop(){ 
