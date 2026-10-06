@@ -1,16 +1,27 @@
 import express from "express"
+import { obtenerHistorico, obtenerUltima } from "../storage.ts";
+import path from "node:path";
 
-export function crearservidor() {
+export function crearservidor (port = 3000) {
     const app = express();
-    const PORT = Number(process.env.PORT) || 3000
-    
-    app.use(express.static("front"));
+    app.use(express.static(path.join(import.meta.dirname, "..", ".." , "front")));
 
-    app.get('/a' , (req,res) => {
-        console.log("hola desde express");
-    })  
+    app.get('/api/actual', (req,res) => {
+        const ultima = obtenerUltima();
 
-    app.listen(PORT, () => {
-        console.log(`Servidor en http://localhost:${PORT}`)
+        if (ultima === null) {
+            res.status(404).json({ error: "todavía no hay mediciones" });
+            return;
+        }
+
+        res.json(ultima);
+    })
+
+    app.get('/api/historico', (req,res) => {
+        res.json(obtenerHistorico());
+    })
+
+    app.listen(port , () => {
+        console.log(`Servidor corriendo en http://localhost:${port}`); 
     })
 }
